@@ -66,6 +66,7 @@ coverage/
 tmp/
 *.tmp
 release/
+.release-cache/
 *.zip
 
 # OS / editor

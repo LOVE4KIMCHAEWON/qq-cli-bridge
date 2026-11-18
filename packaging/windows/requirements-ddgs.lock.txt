@@ -1,0 +1,12 @@
+# Pinned, hash-locked DDGS image-search dependencies for the bundled Windows
+# Python runtime (CPython 3.12, win_amd64). Installed by build-release.mjs with
+#   pip install --require-hashes --no-deps --only-binary=:all: --target ...
+# To upgrade: bump versions, then refresh hashes with `pip download` + `pip hash`.
+ddgs==9.16.1 \
+    --hash=sha256:9ac0b3c19d865a9bfbf7bc7cc8090bd43d1e7adfb083a017bbece360a22e21b6
+click==8.5.1 \
+    --hash=sha256:8bb5376d2006950386f8c6427613334a2acadc5f559cb80e638d00b4df957e37
+lxml==6.1.3 \
+    --hash=sha256:3e9a00d1c2c30936f7add097c41afc5da6556c580909104aafd382cac92a855c
+primp==2.0.1 \
+    --hash=sha256:0e27f3e233cf34cae6cbc8158af58b93fb0a87ceb1802b4611c7a14a2d822cdc

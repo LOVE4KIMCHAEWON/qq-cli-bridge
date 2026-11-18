@@ -26,7 +26,8 @@
     "dev": "tsx src/cli.ts",
     "start": "node dist/cli.js",
     "test": "node scripts/run-tests.mjs",
-    "test:live": "node -e \"process.env.QQBRIDGE_LIVE_TESTS='1';process.env.QQBRIDGE_CODEX_LIVE_VERIFY='1';import('./scripts/run-tests.mjs')\""
+    "test:live": "node -e \"process.env.QQBRIDGE_LIVE_TESTS='1';process.env.QQBRIDGE_CODEX_LIVE_VERIFY='1';import('./scripts/run-tests.mjs')\"",
+    "release:win": "node packaging/windows/build-release.mjs"
   },
   "dependencies": {
     "@tencent-connect/qqbot-connector": "^1.2.0",

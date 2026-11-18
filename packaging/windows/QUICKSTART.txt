@@ -1,0 +1,88 @@
+QQ CLI Bridge — Windows portable release (x64)
+==============================================
+
+Chat with Claude Code or Codex from QQ, using YOUR OWN QQ Bot and YOUR OWN
+AI CLI subscription. This package already contains Node.js and Python;
+you do not need to install them.
+
+Requirements
+------------
+- Windows 10 or 11, 64-bit.
+- A QQ account that can own a QQ Bot (QQ Open Platform: https://q.qq.com/)
+  and mobile QQ to scan a QR code.
+- At least ONE AI CLI, installed and logged in with your own account:
+    * Claude Code  (recommended)   check:  claude --version   login: claude
+    * Codex CLI                    check:  codex --version    login: codex login
+
+Start
+-----
+1. Extract the whole zip to a folder you own, e.g. C:\Apps\qq-cli-bridge
+   (do not run it from inside the zip).
+2. Double-click  "QQ CLI Bridge.cmd".
+3. The first-run wizard will:
+     - bind your QQ Bot (scan the QR code with mobile QQ),
+     - let you pick Claude or Codex and check it is installed + logged in,
+     - for Codex, run the restricted-mode safety verification,
+     - test image search,
+     - start the Bridge.
+4. Send a private message to your bot from the QQ account that scanned the QR.
+
+Next time, double-click "QQ CLI Bridge.cmd" and choose 1) Start Bridge.
+Stop with Ctrl+C in that window, or menu option 4.
+
+Windows SmartScreen may warn about a downloaded script; choose
+"More info" -> "Run anyway" only if you downloaded the zip from the
+project's official GitHub Releases page and the SHA256 checksum matches.
+
+Where is my data?
+-----------------
+Settings, encrypted QQ credentials, memory, logs and sessions are stored in
+  %LOCALAPPDATA%\qq-cli-bridge\data
+NOT in this folder, so you can delete or replace this folder to update.
+To use another location, set the environment variable QQBRIDGE_DATA_DIR
+before starting. (Moving the data folder requires running setup again,
+because the credential encryption key depends on its path.)
+
+Updating
+--------
+1. Stop the Bridge.
+2. Delete this folder and extract the new release in its place.
+3. Start again. Your data folder is reused. If you use Codex, the launcher
+   will ask you to re-run the verification when required.
+
+Command line (advanced)
+-----------------------
+Open PowerShell in this folder:
+  .\qqbridge.cmd --help
+  .\qqbridge.cmd status
+  .\qqbridge.cmd claude --transport stream --no-terminal
+  .\qqbridge.cmd verify-codex-restricted
+  .\qqbridge.cmd codex --transport app-server --no-terminal
+  .\qqbridge.cmd allowlist add-group <group_openid>
+  .\qqbridge.cmd stop
+
+Groups
+------
+The bot only answers in groups you allowlist, and only when @mentioned.
+When the bot joins a group, the Bridge window prints the exact
+"allowlist add-group" command to run (or use menu option 7).
+Enable group @-messages for your bot on the QQ Open Platform.
+
+Safety
+------
+The Bridge is Chat-only: AI tools (files, shell, MCP, browser) are disabled
+for QQ messages. Anyone you allowlist uses YOUR AI subscription through the
+bot — do not allowlist people or groups you do not trust.
+
+Troubleshooting
+---------------
+- "Command not found: claude" / "codex": install the CLI, open a NEW window.
+- "QQ is not configured": run the wizard (menu option 2).
+- "Another qqbridge instance is running": menu option 4, then start again.
+- Codex refuses to start: run menu option 6 (verification) and read the
+  reported reason.
+- Image search returns nothing: DuckDuckGo may be rate-limiting; wait and
+  retry. Chat keeps working.
+
+Full documentation: app\README.md and app\docs\
+License: LICENSE (MIT). Third-party licenses: THIRD-PARTY-NOTICES.txt
