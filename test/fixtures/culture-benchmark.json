@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "description": "Phase 0 Chinese internet slang understanding benchmark (deterministic retrieval + pattern match; no live model).",
+  "cases": [
+    {
+      "id": "term-pofang",
+      "utterance": "我直接破防了",
+      "expectTerms": ["破防"],
+      "expectPatterns": []
+    },
+    {
+      "id": "term-yyds",
+      "utterance": "这操作 yyds",
+      "expectTerms": ["yyds"],
+      "expectPatterns": []
+    },
+    {
+      "id": "term-juejuezi",
+      "utterance": "绝绝子好吗",
+      "expectTerms": ["绝绝子"],
+      "expectPatterns": []
+    },
+    {
+      "id": "term-bangbu",
+      "utterance": "蚌埠住了哈哈哈",
+      "expectTerms": ["蚌埠住了"],
+      "expectPatterns": []
+    },
+    {
+      "id": "pattern-wuxiyi",
+      "utterance": "今日五福一冲冲冲",
+      "expectTerms": [],
+      "expectPatterns": ["五X一"]
+    },
+    {
+      "id": "pattern-dianzhongdian",
+      "utterance": "典中典了属于是破防了",
+      "expectTerms": ["典", "破防"],
+      "expectPatterns": ["X中X", "属于是X了"]
+    },
+    {
+      "id": "pattern-yizhengge",
+      "utterance": "一整个无语住",
+      "expectTerms": [],
+      "expectPatterns": ["一整个X住"]
+    },
+    {
+      "id": "mixed-bailan-neijuan",
+      "utterance": "别内卷了先摆烂一天",
+      "expectTerms": ["内卷", "摆烂"],
+      "expectPatterns": []
+    },
+    {
+      "id": "alias-xswl",
+      "utterance": "xswl 笑死",
+      "expectTerms": ["xswl"],
+      "expectPatterns": []
+    },
+    {
+      "id": "negative-plain",
+      "utterance": "今天天气不错我们去公园",
+      "expectTerms": [],
+      "expectPatterns": []
+    }
+  ]
+}

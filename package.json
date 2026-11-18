@@ -1,0 +1,46 @@
+{
+  "name": "qq-cli-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chat-only bridge between the official Tencent QQ Bot API and AI CLI backends (Claude Code, restricted Codex App Server)",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "qq",
+    "qqbot",
+    "tencent",
+    "chatbot",
+    "claude-code",
+    "codex",
+    "ai-cli",
+    "bridge"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "bin": {
+    "qqbridge": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "test": "node scripts/run-tests.mjs",
+    "test:live": "node -e \"process.env.QQBRIDGE_LIVE_TESTS='1';process.env.QQBRIDGE_CODEX_LIVE_VERIFY='1';import('./scripts/run-tests.mjs')\""
+  },
+  "dependencies": {
+    "@tencent-connect/qqbot-connector": "^1.2.0",
+    "@tencent-connect/qqbot-nodejs": "^1.0.5",
+    "commander": "^14.0.0",
+    "strip-ansi": "^7.1.0",
+    "zod": "^4.1.5"
+  },
+  "optionalDependencies": {
+    "node-pty": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

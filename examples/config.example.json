@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "allowlist": {
+    "c2cMode": "allowlist",
+    "users": [],
+    "groups": [],
+    "groupMode": "allowlist"
+  },
+  "bridge": {
+    "mode": "session",
+    "requireApprovalForDangerous": true,
+    "maxQqReplyChars": 3500,
+    "usageWarnings": {
+      "contextUsedWarn": 200000,
+      "turnTotalWarn": 100000,
+      "contextGrowthWarn": 50000
+    },
+    "memory": {
+      "enabled": true,
+      "contextBudgetTokens": 6000,
+      "rotationThresholdTokens": 80000,
+      "recentWindowTurns": 12,
+      "maxMemoryItems": 40,
+      "maxRetrievalSnippets": 4,
+      "maintenanceIdleMs": 45000,
+      "maintenanceMinIntervalMs": 120000,
+      "maintenanceBatchTurns": 40
+    },
+    "culture": {
+      "enabled": true,
+      "contextBudgetTokens": 900,
+      "maxSnippets": 8,
+      "seedOnEmpty": true
+    },
+    "images": {
+      "enabled": true,
+      "provider": "ddgs",
+      "providerPriority": [
+        "ddgs"
+      ],
+      "autoFallback": false,
+      "maxDownloadBytes": 5242880,
+      "searchTimeoutMs": 12000,
+      "downloadTimeoutMs": 15000,
+      "minWidth": 200,
+      "minHeight": 200,
+      "rateLimitPerMinute": 12,
+      "maxImagesPerRequest": 3,
+      "ddgs": {
+        "enabled": true
+      },
+      "searxng": {
+        "enabled": true,
+        "baseUrl": ""
+      },
+      "duitang": {
+        "enabled": false,
+        "deliveryMode": "link"
+      }
+    }
+  },
+  "agents": {
+    "gemini": {
+      "command": "gemini",
+      "extraArgs": [],
+      "transport": "oneshot",
+      "acpPermission": "reject"
+    },
+    "codex": {
+      "command": "codex",
+      "extraArgs": [],
+      "skipGitRepoCheck": false,
+      "transport": "oneshot"
+    },
+    "claude": {
+      "command": "claude",
+      "extraArgs": [],
+      "transport": "stream"
+    },
+    "agent": {
+      "command": "agent",
+      "extraArgs": [],
+      "transport": "oneshot",
+      "acpPermission": "reject",
+      "acpMode": "agent"
+    },
+    "custom": {}
+  }
+}

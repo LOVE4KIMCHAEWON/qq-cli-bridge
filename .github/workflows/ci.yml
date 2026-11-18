@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build & offline tests (Windows, Node ${{ matrix.node }})
+    runs-on: windows-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["22.x", "24.x"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse committed runtime data or credentials
+        shell: bash
+        run: |
+          bad=$(git ls-files | grep -Ei '^data/|(^|/)secrets/|\.enc\.json$|(^|/)auth\.json$|\.sqlite(-wal|-shm)?$|(^|/)\.env$|codex-qq-home/' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::Runtime data / credential files are tracked:"
+            echo "$bad"
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install (npm ci)
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Offline tests
+        # No QQ credentials, AI CLIs, or subscriptions are available here.
+        # Live tests are skipped unless QQBRIDGE_LIVE_TESTS=1.
+        run: npm test
+        env:
+          QQBRIDGE_LIVE_TESTS: "0"
+
+      - name: CLI smoke (no credentials)
+        shell: pwsh
+        run: |
+          $env:QQBRIDGE_DATA_DIR = Join-Path $env:RUNNER_TEMP "qqbridge-smoke"
+          node dist/cli.js --version
+          node dist/cli.js compat
+          node dist/cli.js status

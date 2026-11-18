@@ -1,0 +1,20 @@
+# Normalize text files to LF in the repository; check out with native endings.
+* text=auto
+
+# Windows scripts must keep CRLF to run correctly in cmd.exe / PowerShell 5.1.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Lockfile: treat as generated for diffs.
+package-lock.json linguist-generated=true -diff
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.sqlite binary
+*.zip binary

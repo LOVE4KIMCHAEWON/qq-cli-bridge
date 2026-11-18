@@ -1,0 +1,93 @@
+# ---------------------------------------------------------------------------
+# qq-cli-bridge — never commit runtime data, credentials, or build output.
+# ---------------------------------------------------------------------------
+
+# Runtime data directory (QQ credentials, Codex auth copy, Persona, Memory,
+# Culture KB, chat archives, sessions, logs). Templates live in examples/.
+/data/
+data/
+
+# Alternate data dirs (QQBRIDGE_DATA_DIR pointing inside the repo)
+/qqbridge-data*/
+.qq-cli-bridge/
+
+# Credentials / auth material (defense in depth, wherever they appear)
+.env
+.env.*
+!.env.example
+*.enc.json
+auth.json
+**/secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+event-hash.key
+installation_id
+
+# Isolated Codex home and Claude/Codex/Gemini/Cursor local state
+codex-qq-home/
+.codex/
+.claude/
+.gemini/
+.cursor/
+
+# Private conversation content (the real Persona lives in data/persona.md)
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite-journal
+*.db
+*.db-shm
+*.db-wal
+*.jsonl
+!test/fixtures/**/*.jsonl
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Dependencies, caches, build output
+node_modules/
+dist/
+*.tsbuildinfo
+.npm-cache/
+.npm-global/
+.npm/
+coverage/
+.nyc_output/
+
+# Machine-specific npm settings (e.g. a local cache path)
+.npmrc
+
+# Local scratch / probes
+.tmp/
+tmp/
+*.tmp
+release/
+*.zip
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python (DDGS helper)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local backups / exports
+*.bak
+*.orig
+*.backup
+backup/
+backups/
+*.7z
+*.rar
